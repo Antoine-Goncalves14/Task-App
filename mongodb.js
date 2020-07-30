@@ -5,10 +5,6 @@ const { MongoClient, ObjectID } = require('mongodb');
 const connectionURL = 'mongodb://127.0.0.1:27017';
 const databaseName = 'task-manager';
 
-const id = new ObjectID();
-console.log(id.id.length);
-console.log(id.toHexString().length);
-
 MongoClient.connect(
   connectionURL,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -19,63 +15,38 @@ MongoClient.connect(
 
     const db = client.db(databaseName);
 
-    // db.collection('users').insertOne(
-    //   {
-    //     _id: id,
-    //     name: 'Cétone',
-    //     age: 4,
-    //   },
-    //   (error, result) => {
+    // db.collection('users').findOne(
+    //   { _id: ObjectID('5f22bbf5f290a572b471a289') },
+    //   (error, user) => {
     //     if (error) {
-    //       return console.log('Unable to insert user');
+    //       return console.log('Unable to fetch');
     //     }
 
-    //     console.log(result.ops);
+    //     console.log(user);
     //   }
     // );
 
-    // db.collection('users').insertMany(
-    //   [
-    //     {
-    //       name: 'Kelly',
-    //       age: 23,
-    //     },
-    //     {
-    //       name: 'Léon',
-    //       age: 0,
-    //     },
-    //   ],
-    //   (error, result) => {
-    //     if (error) {
-    //       console.log('Unable to insert documents');
-    //     }
+    // db.collection('users')
+    //   .find({ age: 23 })
+    //   .toArray((error, users) => {
+    //     console.log(users);
+    //   });
 
-    //     console.log(result.ops);
-    //   }
-    // );
+    db.collection('tasks').findOne(
+      { _id: ObjectID('5f229059edc1c06c5969b37c') },
+      (error, task) => {
+        if (error) {
+          return console.log('Unable to fetch');
+        }
 
-    // db.collection('tasks').insertMany(
-    //   [
-    //     {
-    //       description: 'First description',
-    //       completed: true,
-    //     },
-    //     {
-    //       description: 'Second description',
-    //       completed: false,
-    //     },
-    //     {
-    //       description: 'Third description',
-    //       completed: true,
-    //     },
-    //   ],
-    //   (error, result) => {
-    //     if (error) {
-    //       console.log('Unable to insert document');
-    //     }
+        console.log(task);
+      }
+    );
 
-    //     console.log(result.ops);
-    //   }
-    // );
+    db.collection('tasks')
+      .find({ completed: false })
+      .toArray((error, tasks) => {
+        console.log(tasks);
+      });
   }
 );
