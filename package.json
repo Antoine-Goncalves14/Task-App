@@ -19,6 +19,7 @@
   "homepage": "https://github.com/AntoineGoncalves-IBM/Task-App#readme",
   "dependencies": {
     "mongodb": "^3.5.9",
-    "mongoose": "^5.9.26"
+    "mongoose": "^5.9.26",
+    "validator": "^13.1.1"
   }
 }
