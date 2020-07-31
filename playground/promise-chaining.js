@@ -1,7 +1,7 @@
 require('../src/db/mongoose');
 const User = require('../src/models/user');
 
-User.findByIdAndUpdate('5f23e072af4b45033c67aa86', {
+User.findByIdAndUpdate('5f240e5de3b2d10b21fff9bb', {
   age: 23,
 })
   .then((user) => {
